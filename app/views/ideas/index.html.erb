@@ -1,20 +1,25 @@
-<h1>Ideas</h1>
+<h1 class="page-title">Ideas</h1>
 
 <div id="ideas">
   <% @ideas.in_groups_of(3, false) do |group| %>
     <div class="row">
       <% group.each do |idea| %>
         <div class="col-md-4 my-3">
-          <%= link_to idea do %>>
-            <%= image_tag(idea.picture_url(:thumb), width: '100%') if idea.picture.present? %>
-          <% end %>
-          <p>
-            👍 <%= idea.likes.count %>
-          </p>
-          <%= button_to "いいね", idea_likes_path(idea), method: :post, class: "btn btn-outline-primary" %>
-          <% if idea.likes.any? %>
-            <%= button_to "いいね解除", idea_like_path(idea, idea.likes.last), method: :delete, class: "btn btn-outline-danger" %>
-          <% end %>
+          <div class="card idea-card">
+
+            <%= link_to idea do %>
+              <%= image_tag(idea.picture_url(:thumb), class: "card-img-top") if idea.picture.present? %>
+            <% end %>
+
+            <div class="like-overlay">
+              <%= button_to idea_likes_path(idea), method: :post, class: "like-overlay-btn" do %>
+                👍 <%= idea.likes.count %>
+              <% end %>
+            </div>
+            
+            <h>
+
+          </div>
         </div>
       <% end %>
     </div>

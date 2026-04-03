@@ -1,15 +1,119 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+/* ===== 変数（テーマカラー） ===== */
+:root {
+  --main-color: #ff6b6b;
+  --sub-color: #f7f6f2;
+  --text-color: #333;
+}
+
+/* ===== 全体 ===== */
+body {
+  background: var(--sub-color);
+  color: var(--text-color);
+  font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+}
+
+/* ===== レイアウト ===== */
+.container {
+  max-width: 1100px;
+}
+
+#ideas {
+  padding-top: 20px;
+}
+
+.row {
+  margin: 0;
+}
+
+.col-md-4 {
+  padding: 12px;
+}
+
+/* ===== タイトル ===== */
+.page-title {
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+  margin: 30px 0;
+  letter-spacing: 2px;
+}
+
+/* ===== ナビバー ===== */
+.navbar {
+  background: var(--main-color) !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* ===== カード ===== */
+.idea-card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  transition: 0.3s;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.idea-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+/* ===== 画像 ===== */
+.card-img-top {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  filter: brightness(0.95);
+}
+
+.idea-card:hover .card-img-top {
+  filter: brightness(0.8);
+}
+
+/* ===== いいねボタン ===== */
+.like-overlay {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+}
+
+.like-overlay-btn {
+  all: unset;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--main-color);
+  color: white;
+  font-weight: bold;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.like-overlay-btn:hover {
+  transform: scale(1.1);
+  opacity: 0.85;
+}
+
+.like-overlay-btn:active {
+  transform: scale(0.9);
+}
+
+/* ===== いいね済み ===== */
+.liked {
+  background: #e84118 !important;
+}
+
+/* ===== アニメーション ===== */
+@keyframes likePop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
+
+.animate-like {
+  animation: likePop 0.3s ease;
+}
